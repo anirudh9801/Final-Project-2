@@ -1,0 +1,11 @@
+package com.java.emp;
+
+public class EmployeeDAOImpl implements EmployeeDao{
+
+	@Override
+	public String addEmployee(Employee employee) {
+		
+	}
+	
+
+}

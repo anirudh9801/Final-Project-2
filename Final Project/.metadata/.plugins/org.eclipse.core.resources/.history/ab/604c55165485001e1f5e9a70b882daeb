@@ -1,0 +1,86 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MenuBar</title>
+    <link rel="stylesheet" href="menuBass.css"/>
+</head>
+<body>
+    <div class="image-cont">
+        <img src="163800845-removebg-preview.png" alt="Website Logo" width="100" height="100"/>
+    </div>
+
+    <form class="custom-form">
+        <p:menubar>
+            <p:submenu label="Pharmacy" icon="ui-icon-contact">
+                <p:menuitem value="Enroll" url="#" />
+                <p:menuitem value="Login" url="#" />
+                <p:submenu label="Enrollment">
+                    <!-- Add submenu items for Enrollment under Pharmacy -->
+                    <p:menuitem value="All Recipient" />
+                </p:submenu>
+            </p:submenu>
+
+            <p:submenu label="Provider" icon="ui-icon-person">
+                <p:menuitem value="Enroll" url="#" />
+                <p:menuitem value="Login" url="#" />
+                <p:submenu label="All Provider">
+                    <!-- Add submenu items for All Provider under Provider -->
+                    <p:menuitem value="All Provider 1" />
+                    <p:menuitem value="All Provider 2" />
+                </p:submenu>
+            </p:submenu>
+
+            <p:submenu label="Recipient" icon="ui-icon-home">
+                <p:menuitem value="Enroll" url="#" />
+                <p:menuitem value="Login" url="#" />
+                <p:submenu label="All Recipient">
+                    <!-- Add submenu items for All Recipient under Recipient -->
+                    <p:menuitem value="All Recipient 1" />
+                    <p:menuitem value="All Recipient 2" />
+                </p:submenu>
+            </p:submenu>
+
+            <p:submenu label="Insurance" icon="ui-icon-document">
+                <p:menuitem value="Enroll" url="#" />
+                <p:menuitem value="Login" url="#" />
+                <p:submenu label="All Insurance">
+                    <!-- Add submenu items for All Insurance under Insurance -->
+                    <p:menuitem value="All Insurance 1" />
+                    <p:menuitem value="All Insurance 2" />
+                </p:submenu>
+            </p:submenu>
+
+            <p:submenu label="Admin" icon="ui-icon-gear">
+                <p:menuitem value="Enroll" url="#" />
+                <p:menuitem value="Login" url="#" />
+                <p:submenu label="All Admin">
+                    <!-- Add submenu items for All Admin under Admin -->
+                    <p:menuitem value="All Admin 1" />
+                    <p:menuitem value="All Admin 2" />
+                </p:submenu>
+            </p:submenu>
+
+            <p:menuitem styleClass="contact-section">
+                <span class="contact-text">Contact</span>
+            </p:menuitem>
+        </p:menubar>
+    </form>
+
+    <div class="card-container">
+        <!-- Add your card content here -->
+    </div>
+
+    <header>
+        <h1>Streamlining Healthcare Operations:<br/> The Role of Hospital Management Systems</h1>
+    </header>
+
+    <article>
+        <!-- Add your article content here -->
+    </article>
+
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+</body>
+</html>

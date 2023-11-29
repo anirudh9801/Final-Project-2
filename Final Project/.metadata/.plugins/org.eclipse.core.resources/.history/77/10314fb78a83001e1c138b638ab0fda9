@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="com.java.emp.Employee" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="Employee">
+        <id name="employeeId" type="java.lang.Integer">
+            <column name="EMPLOYEEID"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="firstName" optimistic-lock="true" type="java.lang.String" unique="false">
+            <column name="FIRSTNAME"/>
+        </property>
+        <property generated="never" lazy="false" name="lastName" optimistic-lock="true" type="java.lang.String" unique="false">
+            <column name="LASTNAME"/>
+        </property>
+        <property generated="never" lazy="false" name="birthday" optimistic-lock="true" type="java.util.Date" unique="false">
+            <column name="BIRTHDAY"/>
+        </property>
+        <property generated="never" lazy="false" name="gender" optimistic-lock="true" type="java.lang.String" unique="false">
+            <column name="GENDER"/>
+        </property>
+        <property generated="never" lazy="false" name="department" optimistic-lock="true" type="java.lang.String" unique="false">
+            <column name="DEPARTMENT"/>
+        </property>
+        <property generated="never" lazy="false" name="position" optimistic-lock="true" type="java.lang.String" unique="false">
+            <column name="POSITION"/>
+        </property>
+        <property generated="never" lazy="false" name="salary" optimistic-lock="true" type="java.lang.String" unique="false">
+            <column name="SALARY"/>
+        </property>
+    </class>
+</hibernate-mapping>

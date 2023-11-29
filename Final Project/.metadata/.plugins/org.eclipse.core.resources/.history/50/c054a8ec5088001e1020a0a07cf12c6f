@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+  <form action="#">
+    <input type="text" required>
+    <label for="" placeholder="Your Full Name" alt="Full Name"></label>
+    <input type="Email" required>
+    <label for="" placeholder="Your Email Address" alt="Email"></label>
+    <textarea required></textarea>
+    <label for="" placeholder="Your Message" alt="Message"></label>
+  </form>
+</div>
+</body>
+</html>

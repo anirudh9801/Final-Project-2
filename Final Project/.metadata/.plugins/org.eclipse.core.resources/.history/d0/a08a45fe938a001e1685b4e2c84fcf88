@@ -1,0 +1,243 @@
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+
+<f:view>
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Styled Form</title>
+
+            <style>
+                body::before {
+                    content: "";
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.2); /* Semi-transparent black overlay */
+                    z-index: -1; /* Place it behind the content */
+                }
+
+                body {
+                    text-align: center;
+                    font-family: "Poppins";
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    background-image: url('wall.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                }
+
+                #form {
+                    font-family: "Poppins";
+                    color: #FF0000;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 10px;
+                    background-color: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+                    border-radius: 3px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+
+                /* Provided styling starts here */
+                input, textarea {
+                    font-family: inherit;
+                    font-size: 100%;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+
+                label {
+                    box-sizing: border-box;
+                }
+
+                textarea {
+                    overflow: auto;
+                    vertical-align: top;
+                }
+
+                input[type=email], input[type=text] {
+                    width: calc(100% - 22px);
+                    padding: 10px;
+                    margin-top: 4px;
+                    border: 1px solid #cccccc;
+                    border-radius: 1.5em;
+                    height: calc(3em + 2px);
+                    background-color: white;
+                    transition: all 0.2s ease-out;
+                    box-shadow: none;
+                    resize: none;
+                    outline: none;
+                }
+
+                input[type=email]:hover, input[type=text]:hover {
+                    border: 1px solid #cccccc;
+                }
+
+                input[type=email]:focus, input[type=email]:active, input[type=text]:focus,
+                input[type=text]:active {
+                    border: 1px solid #e87e22;
+                }
+
+                input[type=email]:focus+label:before, input[type=email]:active+label:before,
+                input[type=text]:focus+label:before, input[type=text]:active+label:before {
+                    color: #e87e22;
+                }
+
+                input[type=email]+label, input[type=text]+label {
+                    display: block;
+                    font-size: 1em;
+                    height: 3em;
+                    line-height: 3em;
+                    margin-top: calc(-3em - 1px);
+                    margin-bottom: 1em;
+                    pointer-events: none;
+                }
+
+                input[type=email]+label:before, input[type=text]+label:before {
+                    content: attr(placeholder);
+                    display: inline-block;
+                    color: #999999;
+                    margin: 0 calc(1em + 2px);
+                    white-space: nowrap;
+                    transition-property: transform, color;
+                    transition-duration: 0.2s;
+                    transition-delay: 0;
+                    transition-timing-function: ease-out;
+                    transform-origin: left center;
+                }
+
+                input[type=email]:focus+label:before, input[type=email].active+label:before,
+                input[type=email]:valid+label:before, input[type=text]:focus+label:before,
+                input[type=text].active+label:before, input[type=text]:valid+label:before {
+                    background: white;
+                    line-height: 1;
+                    padding: 0 1.5px;
+                    transform: translateY(calc(-3em/ 2 - 1px/ 2)) scale(0.8, 0.8);
+                }
+
+                input[type=email]:valid, input[type=text]:valid {
+                    border: 1px solid #23a045;
+                }
+
+                input[type=email]:valid+label:before, input[type=text]:valid+label:before {
+                    content: attr(alt);
+                    color: #23a045;
+                }
+
+                textarea {
+                    width: calc(100% - 22px);
+                    padding: 10px;
+                    margin-top: 4px;
+                    border: 1px solid #cccccc;
+                    border-radius: 16px;
+                    height: calc(18em + 2px);
+                    background-color: white;
+                    transition: all 0.2s ease-out;
+                    box-shadow: none;
+                    resize: none;
+                    outline: none;
+                }
+
+                textarea:hover {
+                    border: 1px solid #cccccc;
+                }
+
+                textarea:focus, textarea:active {
+                    border: 1px solid #e87e22;
+                }
+
+                textarea:focus+label:before, textarea:active+label:before {
+                    color: #e87e22;
+                }
+
+                textarea+label {
+                    display: block;
+                    font-size: 1em;
+                    height: calc(18em + 2px);
+                    line-height: 1;
+                    padding-top: calc(1em + 1px);
+                    margin-top: calc(-18em - 2px);
+                    margin-bottom: 1em;
+                    pointer-events: none;
+                }
+
+                textarea+label:before {
+                    content: attr(placeholder);
+                    display: inline-block;
+                    color: #999999;
+                    margin: 0 calc(1em + 2px);
+                    white-space: nowrap;
+                    transition-property: transform, color;
+                    transition-duration: 0.2s;
+                    transition-delay: 0;
+                    transition-timing-function: ease-out;
+                    transform-origin: left center;
+                }
+
+                textarea:focus+label:before, textarea.active+label:before, textarea:valid+label:before {
+                    background: white;
+                    line-height: 1;
+                    padding: 0 1.5px;
+                    transform: translateY(calc(( -1em - 0.5em)- 0.5px)) scale(0.8, 0.8);
+                }
+
+                textarea:valid {
+                    border: 1px solid #23a045;
+                }
+
+                textarea:valid+label:before {
+                    content: attr(alt);
+                    color: #23a045;
+                }
+                /* Provided styling ends here */
+
+        </head>
+        <body>
+
+            <h:form id="form">
+                <div class="container">
+                    <!-- Your existing form fields with the provided styling -->
+                    <div class="field">
+                        <label style="display: inline-block; vertical-align: middle;">First Name<span style="color: red;">*</span></label>
+                        <h:inputText id="firstName" value="#{patient.firstName}" />
+                        <span class="message"><h:message for="form:firstName"></h:message></span>
+                    </div>
+                    <!-- Add other form fields as needed -->
+
+                </div>
+
+                <div class="container">
+                    <!-- Your additional form fields with the provided styling -->
+                    <div class="field">
+                        <label>Corresponding Address</label>
+                        <h:inputText id="address" value="#{patient.address}" />
+                        <span class="message"><h:message for="form:address"></h:message></span>
+                    </div>
+                    <!-- Add other form fields as needed -->
+
+                </div>
+
+                <div class="button-container">
+                    <h:commandButton styleClass="my-button" action="#{patientController.addPatientValid(patient)}" value="Sign Up" />
+                    <input class="my-button" type="reset" value="Reset">
+                </div>
+
+                <div class="button-container">
+                    <!-- Back Button -->
+                    <a class="my-button" href="javascript:history.go(-1)">Back</a>
+                </div>
+
+                <br />
+                <a href="login.jsp">Already have an account?</a>
+            </h:form>
+        </body>
+    </html>
+</f:view>

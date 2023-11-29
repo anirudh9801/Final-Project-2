@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .table-control {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            font-size: 14px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-button:hover {
+            background-color: #2980b9;
+        }
+
+        .table-container {
+            margin-top: 30px;
+        }
+
+        .table {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-update {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<center>
+ <h2><h:outputText value = "Employ Records"/></h2>
+ </center>
+             <div class="table-control">
+                <!-- Minimize Button -->
+                <h:commandButton value="-" action="#{eDao.minimizeTable}" class="toggle-button"
+                    rendered="#{eDao.tableVisible}" />
+
+                <!-- Maximize Button -->
+                <h:commandButton value="+" action="#{eDao.maximizeTable}" class="toggle-button"
+                    rendered="#{not eDao.tableVisible}" />
+            </div>
+    <div class="container">
+        <h:form>
+
+
+            <div class="table-container">
+                <h:panelGroup rendered="#{eDao.tableVisible}">
+                    <h:dataTable value="#{eDao.showEmployDao()}" var="e" class="table table-bordered">
+                        <h:column>
+                            <f:facet name="header">Employ No</f:facet>
+                            <h:outputText value="#{e.empno}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Employ Name</f:facet>
+                            <h:outputText value="#{e.name}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Gender</f:facet>
+                            <h:outputText value="#{e.gender}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Employ Dpet</f:facet>
+                            <h:outputText value="#{e.dept}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Employ Desig</f:facet>
+                            <h:outputText value="#{e.desig}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Employ basic</f:facet>
+                            <h:outputText value="#{e.basic}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Update</f:facet>
+                            <h:commandButton action="#{eDao.searchEmployDao(e.empno)}" value="Update"
+                                class="btn btn-update btn-sm" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Delete</f:facet>
+                            <h:commandButton action="#{eDao.deleteEmployDao(e.empno)}" value="Delete"
+                                class="btn btn-delete btn-sm" />
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+            </div>
+
+            <h:commandButton action="CreateEmploy.xhtml?faces-redirect=true" value="Create Employ"
+                class="btn btn-primary" />
+        </h:form>
+    </div>
+</body>
+
+</html>

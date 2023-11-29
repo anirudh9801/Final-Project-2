@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Bar</title>
+    <link rel="stylesheet" href="menuBass.css"/>
+    <style>
+        /* Style for the horizontal menu bar */
+        ul.menu-bar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        ul.menu-bar li {
+            float: left;
+        }
+
+        ul.menu-bar li a, .dropdown-content a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        ul.menu-bar li a:hover, .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-cont">
+        <img src="163800845-removebg-preview.png" alt="Website Logo" width="100" height="100"/>
+    </div>
+
+    <ul class="menu-bar">
+        <li><a href="#">Enroll Pharmacy</a></li>
+        <li><a href="NewFile.html">Login</a></li>
+        <li><a href="#">All Pharmacy</a></li>
+
+        <li><a href="#">Enroll Provider</a></li>
+        <li><a href="NewFile.html">Login</a></li>
+        <li><a href="#">All Provider</a></li>
+
+        <li class="dropdown">
+            <a href="#">Enroll Recipient</a>
+            <div class="dropdown-content">
+                <a href="Welcome.jsp">Login</a>
+                <a href="Enrollment.jsp">Enrollment</a>
+            </div>
+        </li>
+      
+
+        <li><a href="#">Enroll Insurance</a></li>
+        <li><a href="NewFile.html">Login</a></li>
+        <li><a href="#">All Insurance</a></li>
+
+        <li><a href="#">Enroll Admin</a></li>
+        <li><a href="NewFile.html">Login</a></li>
+        <li><a href="#">All Admin</a></li>
+
+        <li class="contact-section">
+            <span class="contact-text">Contact</span>
+        </li>
+    </ul>
+
+    <!-- Rest of your content -->
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                Get 15% off on Medicines
+            </div>
+            <div class="card-body">
+                <p>Get flat 150/- off on Bills* </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Hospital Visit
+            </div>
+            <div class="card-body">
+                <p>Confirm appointment</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Video Consult
+            </div>
+            <div class="card-body">
+                <p>Connect with Doctors</p>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1>Streamlining Healthcare Operations:<br/> The Role of Hospital Management Systems</h1>
+    </header>
+
+    <article>
+        <section>
+            <h2>Understanding Hospital Management Systems</h2>
+            <p class="scroll-p">Hospital Management Systems are comprehensive software solutions designed to automate and streamline the day-to-day operations of a healthcare facility. From patient registration and appointment scheduling to billing and inventory management, HMS integrates various functions into a unified platform.</p>
+        </section>
+
+        <section>
+            <h2>Key Features and Benefits</h2>
+            <ul>
+                <li><strong>Patient Information Management:</strong> HMS enables healthcare providers to maintain accurate and up-to-date patient records. From demographics to medical history, all information is easily accessible, ensuring quick and informed decision-making.</li>
+                <!-- Add other list items as needed -->
+            </ul>
+        </section>
+
+        <section>
+            <h2>Implementing HMS for Enhanced Patient Care</h2>
+            <ul>
+                <li><strong>Improved Efficiency:</strong> HMS reduces manual paperwork and administrative burdens, allowing healthcare professionals to allocate more time to patient care. Streamlined processes lead to faster service delivery and increased overall efficiency.</li>
+                <!-- Add other list items as needed -->
+            </ul>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@hospitalmanagementsystem.com</p>
+                <p>Phone: +91 123-456-7890</p>
+                <p>Address: Kundahalli, EPIP Zone, Whitefield, Bangalore</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Connect with Us</h3>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <p class="footer-bottom">&copy; 2023 Your Hospital Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

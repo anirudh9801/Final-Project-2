@@ -1,0 +1,595 @@
+<%-- <%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+
+<f:view>
+	<html>
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title>JSP Page</title>
+		</head>
+		<body>
+			<div>
+				<div class="h2-container">
+					<h2>PATIENT ENROLLMENT</h2>
+				</div>
+				<hr />
+				<h:form id="form">
+					<div class="container">
+						<div class="field">
+							<label>First Name<span style="color: red;">*</span></label>
+							<h:inputText id="firstName" value="#{patient.firstName}" />
+							<span class="message"><h:message for="form:firstName"></h:message></span>
+						</div>
+						<div class="field">
+							<label>Last Name<span style="color: red;">*</span></label>
+							<h:inputText id="lastName" value="#{patient.lastName}" />
+							<span class="message"><h:message for="form:lastName"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>Gender<span style="color: red;">*</span></label>
+							<h:selectOneMenu id="gender" value="#{patient.gender}">
+								<f:selectItem itemLabel="Select Gender" itemValue="" />
+								<f:selectItem itemLabel="MALE" itemValue="MALE" />
+								<f:selectItem itemLabel="FEMALE" itemValue="FEMALE" />
+								<f:selectItem itemLabel="OTHER" itemValue="OTHER" />
+							</h:selectOneMenu>
+							<span class="message"><h:message for="form:gender" /></span>
+						</div>
+
+						<div class="field">
+							<label>Date of Birth<span style="color: red;">*</span></label>
+							<h:inputText id="dob" value="#{patient.dob}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:inputText>
+							<h:panelGroup>
+								<span class="message"><h:message for="form:dob" /></span>
+							</h:panelGroup>
+						</div>
+
+						<div class="field">
+							<label>UserName<span style="color: red;">*</span></label>
+							<h:inputText id="userName" value="#{patient.userName}" />
+							<span class="message"><h:message for="form:userName" /></span>
+						</div>
+
+						<div class="field password-container">
+							<label>Password<span style="color: red;">*</span></label>
+							<h:inputSecret id="Password" value="#{patient.password}" autocomplete="new-password" />
+							<br /> <span class="message"><h:message for="form:Password" /></span>
+						</div>
+
+						<div class="field">
+							<label>Permanent Address<span style="color: red;">*</span></label>
+							<h:inputText id="permanentAddress" value="#{patient.permanentAddress}" />
+							<span class="message"><h:message for="form:permanentAddress"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>Country<span style="color: red;">*</span></label>
+							<h:inputText id="permanentCountry" value="#{patient.permanentCountry}" />
+							<span class="message"><h:message for="form:permanentCountry"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>City<span style="color: red;">*</span></label>
+							<h:inputText id="permanentCity" value="#{patient.permanentCity}" />
+							<span class="message"><h:message for="form:permanentCity"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>State<span style="color: red;">*</span></label>
+							<h:inputText id="permanentState" value="#{patient.permanentState}" />
+							<span class="message"><h:message for="form:permanentState"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>Postal code<span style="color: red;">*</span></label>
+							<h:inputText id="permanentPostalCode" value="#{patient.permanentPostalCode}" />
+							<span class="message"><h:message for="form:permanentPostalCode"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>Email<span style="color: red;">*</span></label>
+							<h:inputText id="email" value="#{patient.email}" />
+							<span class="message"><h:message for="form:email" /></span>
+						</div>
+
+						<div class="field">
+							<label>Phone Number<span style="color: red;">*</span></label>
+							<div style="display: flex; margin-left: 12px">
+								<h:selectOneMenu id="countryCode" value="#{patient.countryCode}" style='width:30%; padding:0px;'>
+									<f:selectItem itemLabel="Select Country Code" itemValue="" />
+									<f:selectItem itemLabel="+1 (USA)" itemValue="+1" />
+									<f:selectItem itemLabel="+44 (UK)" itemValue="+44" />
+									<f:selectItem itemLabel="+91 (IN)" itemValue="+91" />
+									<f:selectItem itemLabel="+33 (FR)" itemValue="+33" />
+									<f:selectItem itemLabel="+49 (DE)" itemValue="+49" />
+								</h:selectOneMenu>
+
+								<h:inputText id="phoneno" value="#{patient.phoneno}" style='width:65%;' />
+							</div>
+							<div style='display: flex;'>
+								<span class="message" style='width: 30%'><h:message for="form:countryCode" /></span>
+								<span class="message"><h:message for="form:phoneno"></h:message></span>
+							</div>
+						</div>
+
+						<div style="margin: auto;">
+							<div style="display: contents;" class="field">
+								<label>Same as Permanent Address</label>
+								<h:selectBooleanCheckbox id="sameAsPermanent" onclick="copyPermanentAddress()" />
+							</div>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="field">
+							<label>Corresponding Address</label>
+							<h:inputText id="address" value="#{patient.address}" />
+							<span class="message"><h:message for="form:address"></h:message></span>
+						</div>
+						<div class="field">
+							<label>Country</label>
+							<h:inputText id="country" value="#{patient.country}" />
+							<span class="message"><h:message for="form:country"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>State</label>
+							<h:inputText id="state" value="#{patient.state}" />
+							<span class="message"><h:message for="form:state"></h:message></span>
+						</div>
+						<div class="field">
+							<label>City</label>
+							<h:inputText id="city" value="#{patient.city}" />
+							<span class="message"><h:message for="form:city"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>Postal code</label>
+							<h:inputText id="postalCode" value="#{patient.postalCode}" />
+							<span class="message"><h:message for="form:postalCode"></h:message></span>
+						</div>
+
+						<div class="field">
+							<label>Medical History</label>
+							<h:inputText id="medHistory" value="#{patient.medHistory}" />
+							<span class="message"><h:message for="form:medHistory"></h:message></span>
+						</div>
+					</div>
+
+					<div class="button-container">
+						<h:commandButton styleClass="my-button" action="#{patientController.addPatientValid(patient)}" value="Sign Up" />
+						<input class="my-button" type="reset" value="Reset">
+					</div>
+
+					Back Button 
+					<div class="button-container">
+						<a class="my-button" href="javascript:history.go(-1)">Back</a>
+					</div>
+
+					<br />
+					<a href="login.jsp">Already have an account?</a>
+				</h:form>
+			</div>
+		</body>
+		<script>
+			function copyPermanentAddress() {
+				var sameAsPermanentCheckbox = document.getElementById("form:sameAsPermanent");
+				var addressInput = document.getElementById("form:address");
+				var cityInput = document.getElementById("form:city");
+				var stateInput = document.getElementById("form:state");
+				var countryInput = document.getElementById("form:country");
+				var postalcodeInput = document.getElementById("form:postalCode");
+
+				if (sameAsPermanentCheckbox.checked) {
+					// Copy values from permanent address fields to corresponding fields
+					addressInput.value = document.getElementById("form:permanentAddress").value;
+					cityInput.value = document.getElementById("form:permanentCity").value;
+					stateInput.value = document.getElementById("form:permanentState").value;
+					countryInput.value = document.getElementById("form:permanentCountry").value;
+					postalcodeInput.value = document.getElementById("form:permanentPostalCode").value;
+				} else {
+					// Clear the values if the checkbox is unchecked
+					addressInput.value = "";
+					cityInput.value = "";
+					stateInput.value = "";
+					countryInput.value = "";
+					postalcodeInput.value = "";
+				}
+			}
+		</script>
+	</html>
+</f:view>
+ --%>
+ <%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+
+<f:view>
+	<html>
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<title>JSP Page</title>
+		</head>
+		 <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+    <script>
+        (function () {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            if (typeof _bsa !== 'undefined' && _bsa) {
+                // format, zoneKey, segment:value, options
+                _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+            }
+        })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=G-98H8KRKT85'></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-98H8KRKT85');
+    </script>
+
+    <meta name="robots" content="noindex">
+
+    <body>
+        <link rel="stylesheet" href="/assests/css/font-awesome.min.css">
+        <!-- New toolbar-->
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            }
+
+
+            #w3lDemoBar.w3l-demo-bar {
+                top: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 9999;
+                padding: 40px 5px;
+                padding-top: 70px;
+                margin-bottom: 70px;
+                background: #0D1326;
+                border-top-left-radius: 9px;
+                border-bottom-left-radius: 9px;
+            }
+
+            #w3lDemoBar.w3l-demo-bar a {
+                display: block;
+                color: #e6ebff;
+                text-decoration: none;
+                line-height: 24px;
+                opacity: .6;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            #w3lDemoBar.w3l-demo-bar span.w3l-icon {
+                display: block;
+            }
+
+            #w3lDemoBar.w3l-demo-bar a:hover {
+                opacity: 1;
+            }
+
+            #w3lDemoBar.w3l-demo-bar .w3l-icon svg {
+                color: #e6ebff;
+            }
+
+            #w3lDemoBar.w3l-demo-bar .responsive-icons {
+                margin-top: 30px;
+                border-top: 1px solid #41414d;
+                padding-top: 40px;
+            }
+
+            #w3lDemoBar.w3l-demo-bar .demo-btns {
+                border-top: 1px solid #41414d;
+                padding-top: 30px;
+            }
+
+            #w3lDemoBar.w3l-demo-bar .responsive-icons a span.fa {
+                font-size: 26px;
+            }
+
+            #w3lDemoBar.w3l-demo-bar .no-margin-bottom {
+                margin-bottom: 0;
+            }
+
+            .toggle-right-sidebar span {
+                background: #0D1326;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                color: #e6ebff;
+                border-radius: 50px;
+                font-size: 26px;
+                cursor: pointer;
+                opacity: .5;
+            }
+
+            .pull-right {
+                float: right;
+                position: fixed;
+                right: 0px;
+                top: 70px;
+                width: 90px;
+                z-index: 99999;
+                text-align: center;
+            }
+
+            /* ============================================================
+RIGHT SIDEBAR SECTION
+============================================================ */
+
+            #right-sidebar {
+                width: 90px;
+                position: fixed;
+                height: 100%;
+                z-index: 1000;
+                right: 0px;
+                top: 0;
+                margin-top: 60px;
+                -webkit-transition: all .5s ease-in-out;
+                -moz-transition: all .5s ease-in-out;
+                -o-transition: all .5s ease-in-out;
+                transition: all .5s ease-in-out;
+                overflow-y: auto;
+            }
+
+
+            /* ============================================================
+RIGHT SIDEBAR TOGGLE SECTION
+============================================================ */
+
+            .hide-right-bar-notifications {
+                margin-right: -300px !important;
+                -webkit-transition: all .3s ease-in-out;
+                -moz-transition: all .3s ease-in-out;
+                -o-transition: all .3s ease-in-out;
+                transition: all .3s ease-in-out;
+            }
+
+
+
+            @media (max-width: 992px) {
+                #w3lDemoBar.w3l-demo-bar a.desktop-mode {
+                    display: none;
+
+                }
+            }
+
+            @media (max-width: 767px) {
+                #w3lDemoBar.w3l-demo-bar a.tablet-mode {
+                    display: none;
+
+                }
+            }
+
+            @media (max-width: 568px) {
+                #w3lDemoBar.w3l-demo-bar a.mobile-mode {
+                    display: none;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .responsive-icons {
+                    margin-top: 0px;
+                    border-top: none;
+                    padding-top: 0px;
+                }
+
+                #right-sidebar,
+                .pull-right {
+                    width: 90px;
+                }
+
+                #w3lDemoBar.w3l-demo-bar .no-margin-bottom-mobile {
+                    margin-bottom: 0;
+                }
+            }
+        </style>
+        <div class="pull-right toggle-right-sidebar">
+            <span class="fa title-open-right-sidebar tooltipstered fa-angle-double-right"></span>
+        </div>
+
+        <div id="right-sidebar" class="right-sidebar-notifcations nav-collapse">
+            <div class="bs-example bs-example-tabs right-sidebar-tab-notification" data-example-id="togglable-tabs">
+
+                <div id="w3lDemoBar" class="w3l-demo-bar">
+                    <div class="demo-btns">
+                        <a href="https://w3layouts.com/?p=43932">
+                            <span class="w3l-icon -back">
+                                <span class="fa fa-arrow-left"></span>
+                            </span>
+                            <span class="w3l-text">Back</span>
+                        </a>
+                        <a href="https://w3layouts.com/?p=43932">
+                            <span class="w3l-icon -download">
+                                <span class="fa fa-download"></span>
+                            </span>
+                            <span class="w3l-text">Download</span>
+                        </a>
+                        <a href="https://w3layouts.com/checkout/?add-to-cart=43932" class="no-margin-bottom-mobile">
+                            <span class="w3l-icon -buy">
+                                <span class="fa fa-shopping-cart"></span>
+                            </span>
+                            <span class="w3l-text">Buy</span>
+                        </a>
+                    </div>
+                    <!---<div class="responsive-icons">
+            <a href="#url" class="desktop-mode">
+                <span class="w3l-icon -desktop">
+                    <span class="fa fa-desktop"></span>
+                </span>
+            </a>
+            <a href="#url" class="tablet-mode">
+                <span class="w3l-icon -tablet">
+                    <span class="fa fa-tablet"></span>
+                </span>
+            </a>
+            <a href="#url" class="mobile-mode no-margin-bottom">
+                <span class="w3l-icon -mobile">
+                    <span class="fa fa-mobile"></span>
+                </span>
+            </a>
+        </div>-->
+                </div>
+                <div class="right-sidebar-panel-content animated fadeInRight" tabindex="5003"
+                    style="overflow: hidden; outline: none;">
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- section -->
+        <section class="register">
+            <div class="register-full">
+                <div class="register-right">
+                    <div class="register-in">
+                        <!---728x90--->
+
+                        <h1>Health Appointment form</h1>
+                        <!---728x90--->
+                        <div class="registerimg">
+                            <img src="images/doctor.png" alt="" />
+                        </div>
+                        <div class="register-form">
+                            <form action="#" method="post">
+                                <div class="fields-grid">
+                                    <div class="styled-input">
+                                        <h:inputText id="firstName" value="#{patient.firstName}" />
+                                        <label>First Name</label>
+                                        <span></span>
+                                    </div>
+                                    <div class="styled-input">
+                                        <h:inputText id="lastName" value="#{patient.lastName}" />
+                                        <label>Last Name</label>
+                                        <span></span>
+                                    </div>
+                                    <div class="styled-input">
+                                        <input type="email" name="Email" required="">
+                                        <label>Email</label>
+                                        <span></span>
+                                    </div>
+                                    <div class="styled-input">
+                                        <input type="tel" name="Phone" required="">
+                                        <label>Phone Number</label>
+                                        <span></span>
+                                    </div>
+                                    <div class="styled-input">
+                                        <h2>Sex :</h2>
+                                        <input type="radio" name="gender" value="male" checked> Male
+                                        <input type="radio" name="gender" value="female"> Female
+                                    </div>
+                                    <div class="styled-input">
+                                        <select id="category1" required="">
+                                            <option value="">Specialization*</option>
+                                            <option value="">Cardiology</option>
+                                            <option value="">Heart Surgery</option>
+                                            <option value="">Skin Care</option>
+                                            <option value="">Body Check-up</option>
+                                            <option value="">Numerology</option>
+                                            <option value="">Diagnosis</option>
+                                            <option value="">Others</option>
+                                        </select>
+                                        <span></span>
+                                    </div>
+                                    <div class="styled-input">
+                                        <select id="category2" required="">
+                                            <option value="">Choose Hospital*</option>
+                                            <option value="">Hospital 1</option>
+                                            <option value="">Hospital 2</option>
+                                            <option value="">Hospital 3</option>
+                                            <option value="">Hospital 4</option>
+                                            <option value="">Hospital 5</option>
+                                        </select>
+                                        <span></span>
+                                    </div>
+                                    <div class="styled-input">
+                                        <input class="date" id="datepicker" name="Text" type="text" value="MM/DD/YYYY"
+                                            onfocus="this.value = '';"
+                                            onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}" required="">
+                                    </div>
+                                    <div class="content-wthree2">
+                                        <div class="grid-w3layouts1">
+                                            <div class="w3-agile1">
+                                                <label class="rating">Taking any medications
+                                                    currently?<span>*</span></label>
+                                                <ul>
+                                                    <li>
+                                                        <input type="radio" id="a-option" name="selector1">
+                                                        <label for="a-option">Yes </label>
+                                                        <div class="check"></div>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" id="b-option" name="selector1">
+                                                        <label for="b-option">No</label>
+                                                        <div class="check">
+                                                            <div class="inside"></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="styled-input">
+                                        <label class="list">If yes,Please list it<span></span></label>
+                                        <textarea></textarea>
+                                        <span></span>
+                                    </div>
+                                    <input type="submit" name="submit" value="Book Appointment">
+                                    <div class="clear"> </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clear"> </div>
+                    </div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+            <!---728x90--->
+            <!-- copyright -->
+            <p class="agile-copyright">© 2017 Health Appointment Form. All Rights Reserved | Design by <a
+                    href="https://w3layouts.com/" target="_blank">W3layouts</a></p>
+            <!-- //copyright -->
+        </section>
+        <!-- //section -->
+
+        <!-- Default-JavaScript -->
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+        <!-- Calendar -->
+        <script src="js/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker,#datepicker1").datepicker();
+            });
+        </script>
+        <!-- //Calendar -->
+	
+	</html>
+</f:view>
+ 

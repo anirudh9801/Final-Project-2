@@ -1,0 +1,238 @@
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+
+<f:view>
+	<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+<style>
+body {
+	text-align: center;
+	font-family: "Poppins";
+	color: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	background-image: url('doc.jpeg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#form {
+	font-family: "Poppins";
+	color: #FF0000;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: rgba(242, 242, 242, 0.7);
+	border-radius: 3px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border: 2px solid #000;
+}
+
+.h2-container {
+	background-color: #007bff;
+	padding: 10px;
+}
+
+h2 {
+	font-size: 24px;
+	margin: 2px 0;
+	color: white;
+}
+
+label {
+	font-size: 16px;
+	color: #333;
+}
+
+input[type="text"], input[type="password"], select {
+	width: calc(100% - 22px);
+	padding: 10px;
+	margin-top: 4px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	height: 40px;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, select:hover {
+	background-color: #ddd;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+	background-color: #fff;
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.field {
+	width: 48%;
+}
+
+.field.password-container {
+	width: 48%;
+}
+
+.button-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.my-button {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 20px;
+	margin: 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.my-button:hover {
+	background-color: #0056b3;
+	transform: scale(1.05);
+}
+
+a {
+	color: #007bff;
+	text-decoration: none;
+	transition: color 0.3s, text-decoration 0.3s;
+}
+
+a:hover {
+	color: #0056b3;
+	text-decoration: underline;
+}
+
+.placeholder {
+    color: gray;
+}
+
+</style>
+</head>
+<body>
+
+    <div>
+        <div class="h2-container">
+            <h2>ENROLLMENT</h2>
+        </div>
+        <hr />
+        <h:form id="form">
+
+            <div class="container">
+                <div class="field">
+                    <label style="display: inline-block; vertical-align: middle;">First
+                        Name<span style="color: red;">*</span>
+                    </label>
+                    <h:inputText id="firstName" value="#{patient.firstName}" />
+                    <span class="message"><h:message for="form:firstName"></h:message></span>
+                </div>
+
+                <div class="field">
+                    <label style="display: inline-block; vertical-align: middle;">Last
+                        Name<span style="color: red;">*</span>
+                    </label>
+                    <h:inputText id="lastName" value="#{patient.lastName}" />
+                    <span class="message"><h:message for="form:lastName"></h:message></span>
+                </div>
+
+                <!-- ... Existing code ... -->
+
+                <div class="field">
+                    <label>Corresponding Address</label>
+                    <h:inputText id="address" value="#{patient.address}" placeholder="Enter your corresponding address" onfocus="showPlaceholder(this)" onblur="hidePlaceholder(this)" styleClass="placeholder"/>
+                    <span class="message"><h:message for="form:address"></h:message></span>
+                </div>
+                <div class="field">
+                    <label>Country</label>
+                    <h:inputText id="country" value="#{patient.country}" placeholder="Enter your country" onfocus="showPlaceholder(this)" onblur="hidePlaceholder(this)" styleClass="placeholder"/>
+                    <span class="message"><h:message for="form:country"></h:message></span>
+                </div>
+
+                <div class="field">
+                    <label>State</label>
+                    <h:inputText id="state" value="#{patient.state}" placeholder="Enter your state" onfocus="showPlaceholder(this)" onblur="hidePlaceholder(this)" styleClass="placeholder"/>
+                    <span class="message"><h:message for="form:state"></h:message></span>
+                </div>
+                <div class="field">
+                    <label>City</label>
+                    <h:inputText id="city" value="#{patient.city}" placeholder="Enter your city" onfocus="showPlaceholder(this)" onblur="hidePlaceholder(this)" styleClass="placeholder"/>
+                    <span class="message"><h:message for="form:city"></h:message></span>
+                </div>
+
+                <!-- ... Existing code ... -->
+
+            </div>
+
+            <div class="button-container">
+                <h:commandButton styleClass="my-button"
+                    action="#{patientController.addPatientValid(patient)}"
+                    value="Sign Up" />
+                <input class="my-button" type="reset" value="Reset">
+            </div>
+
+            <br />
+            <a href="login.jsp">Already have an account?</a>
+        </h:form>
+    </div>
+</body>
+<script>
+    function copyPermanentAddress() {
+        var sameAsPermanentCheckbox = document
+            .getElementById("form:sameAsPermanent");
+        var addressInput = document.getElementById("form:address");
+        var cityInput = document.getElementById("form:city");
+        var stateInput = document.getElementById("form:state");
+        var countryInput = document.getElementById("form:country");
+        var postalcodeInput = document.getElementById("form:postalCode");
+
+        if (sameAsPermanentCheckbox.checked) {
+            // Copy values from permanent address fields to corresponding fields
+            addressInput.value = document
+                .getElementById("form:permanentAddress").value;
+            cityInput.value = document.getElementById("form:permanentCity").value;
+            stateInput.value = document.getElementById("form:permanentState").value;
+            countryInput.value = document
+                .getElementById("form:permanentCountry").value;
+            postalcodeInput.value = document
+                .getElementById("form:permanentPostalCode").value;
+        } else {
+            // Clear the values if the checkbox is unchecked
+            addressInput.value = "";
+            cityInput.value = "";
+            stateInput.value = "";
+            countryInput.value = "";
+            postalcodeInput.value = "";
+        }
+    }
+
+    function showPlaceholder(element) {
+        if (element.value === "") {
+            element.value = element.getAttribute("placeholder");
+            element.classList.add("placeholder");
+        }
+    }
+
+    function hidePlaceholder(element) {
+        if (element.value === element.getAttribute("placeholder")) {
+            element.value = "";
+            element.classList.remove("placeholder");
+        }
+    }
+</script>
+</html>
+</f:view>

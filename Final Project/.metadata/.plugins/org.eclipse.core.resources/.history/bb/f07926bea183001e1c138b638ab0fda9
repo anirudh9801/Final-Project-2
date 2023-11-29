@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+      <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h:form {
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        center {
+            text-align: center;
+        }
+
+        .dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .dataTable th, .dataTable td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .dataTable th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .minimizeMaximizeButtons {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+	<h:form>
+	  <center>
+	    <h2><h:outputText value = "Employ Records"/></h2>
+	    
+	      <!-- Minimize Button -->
+        <h:commandButton value="Minimize Table" action="#{eDao.minimizeTable}" rendered="#{eDao.tableVisible}" />
+        
+        <!-- Maximize Button -->
+        <h:commandButton value="Maximize Table" action="#{eDao.maximizeTable}" rendered="#{not eDao.tableVisible}" />
+        
+	   <h:panelGroup rendered="#{eDao.tableVisible}">
+	  <h:dataTable value = "#{eDao.showEmployDao()}" var = "e" border = "3">
+	    <h:column>
+	      <f:facet name = "header">Employ No</f:facet>
+	      <h:outputText value = "#{e.empno}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	      <f:facet name = "header">Employ Name</f:facet>
+	      <h:outputText value = "#{e.name}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	      <f:facet name = "header">Gender</f:facet>
+	      <h:outputText value = "#{e.gender}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	      <f:facet name = "header">Employ Dpet</f:facet>
+	      <h:outputText value = "#{e.dept}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	      <f:facet name = "header">Employ Desig</f:facet>
+	      <h:outputText value = "#{e.desig}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	      <f:facet name = "header">Employ basic</f:facet>
+	      <h:outputText value = "#{e.basic}"></h:outputText>
+	    </h:column>
+	   <h:column>
+	      <f:facet name = "header">Update</f:facet>
+	      <h:commandButton action = "#{eDao.searchEmployDao(e.empno)}" 
+	      value = "Update"></h:commandButton>
+	    </h:column>
+	    <h:column>
+	      <f:facet name = "header">Delete</f:facet>
+	      <h:commandButton action = "#{eDao.deleteEmployDao(e.empno)}" 
+	      value = "Delete"></h:commandButton>
+	    </h:column>
+	  </h:dataTable>
+	   </h:panelGroup>
+	   
+	   
+	  <h:commandButton action = "CreateEmploy.xhtml?faces-redirect=true" value = "Create Employ"></h:commandButton>
+	  </center>
+	</h:form>
+	</body>
+</html>
